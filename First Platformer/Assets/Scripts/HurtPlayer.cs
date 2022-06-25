@@ -26,6 +26,7 @@ public class HurtPlayer : MonoBehaviour
             hitDirection = hitDirection.normalized;
 
             FindObjectOfType<HealthManager>().hurtPlayer(damageToGive, hitDirection);
+            FindObjectOfType<AudioManager>().Play("Hit");
         }
     }
 }

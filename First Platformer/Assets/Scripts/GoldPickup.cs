@@ -29,6 +29,8 @@ public class GoldPickup : MonoBehaviour
 
             Instantiate(pickupEffect, transform.position, transform.rotation);
 
+            FindObjectOfType<AudioManager>().Play("Gold");
+
             Destroy(gameObject);
         }
     }

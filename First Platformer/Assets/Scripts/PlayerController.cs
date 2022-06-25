@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
                 {
                     moveDirection.y = jumpForce;
                     canDoubleJump = true;
+                    FindObjectOfType<AudioManager>().Play("Jump");
                 }
             }
             else
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
                 {
                     moveDirection.y = jumpForce * doubleJumpMulti;
                     canDoubleJump = false;
+                    FindObjectOfType<AudioManager>().Play("Jump");
                 }
             }
         }
@@ -73,11 +75,16 @@ public class PlayerController : MonoBehaviour
             knockBackCounter -= Time.deltaTime;
         }
 
+        if (Input.GetAxis("Vertical") == 0 || Input.GetAxis("Horizontal") == 0)
+        {
+            FindObjectOfType<AudioManager>().Play("Run");
+        }
+
         moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
         controller.Move(moveDirection * Time.deltaTime);
 
         // Move the character in different directions based on camera look direction
-        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
             Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));

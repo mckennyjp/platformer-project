@@ -92,7 +92,7 @@ public class HealthManager : MonoBehaviour
 
                 thePlayer.transform.position = respawnPoint;
                 charController.enabled = true;
-
+                FindObjectOfType<AudioManager>().Play("Death");
                 Respawn();
             }
             else
@@ -139,7 +139,8 @@ public class HealthManager : MonoBehaviour
         thePlayer.gameObject.SetActive(true);
         thePlayer.transform.position = respawnPoint;
         currentHealth = maxHealth;
-        
+        FindObjectOfType<AudioManager>().Play("Respawn");
+
         invincibilityCounter = invincibilityLength;
         playerRenderer.enabled = false;
         flashCounter = flashLength;

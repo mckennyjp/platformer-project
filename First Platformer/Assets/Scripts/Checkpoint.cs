@@ -40,6 +40,7 @@ public class Checkpoint : MonoBehaviour
         {
             healthMan.SetSpawnPoint(transform.position);
             CheckPointOn();
+            FindObjectOfType<AudioManager>().Play("Checkpoint");
         }
     }
 
