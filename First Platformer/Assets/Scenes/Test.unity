@@ -1958,6 +1958,14 @@ PrefabInstance:
       propertyPath: pivot
       value: 
       objectReference: {fileID: 917294333}
+    - target: {fileID: 7874030120212416371, guid: 72215f22f16ab1f45a3f29fdbdc7e415, type: 3}
+      propertyPath: doubleJumpMulti
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874030120212416372, guid: 72215f22f16ab1f45a3f29fdbdc7e415, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7874030120212416373, guid: 72215f22f16ab1f45a3f29fdbdc7e415, type: 3}
       propertyPath: m_Name
       value: Player

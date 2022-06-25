@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float doubleJumpMulti = 0.5f;
    // public Rigidbody theRB;
     public float jumpForce;
     public CharacterController controller;
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public float knockBackForce;
     public float knockBackTime;
     public float knockBackCounter;
+
+    private bool canDoubleJump = false;
 
 
     // Start is called before the first frame update
@@ -53,6 +56,15 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Jump"))
                 {
                     moveDirection.y = jumpForce;
+                    canDoubleJump = true;
+                }
+            }
+            else
+            {
+                if(Input.GetButtonDown("Jump") && canDoubleJump)
+                {
+                    moveDirection.y = jumpForce * doubleJumpMulti;
+                    canDoubleJump = false;
                 }
             }
         }
@@ -72,7 +84,7 @@ public class PlayerController : MonoBehaviour
             playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
         }
 
-        anim.SetBool("isGrounded", controller.isGrounded);
+        anim.SetBool("IsGrounded", controller.isGrounded);
         anim.SetFloat("Speed", (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal"))));
     }
 
